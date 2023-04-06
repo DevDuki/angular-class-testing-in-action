@@ -4,6 +4,7 @@ import { FrontService } from './front.service';
 
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { RouterAdapterService } from '../_services/router-adapter/router-adapter.service';
+import { Llama } from '../_types/llama.type';
 
 describe('FrontComponent', () => {
   let componentUnderTest: FrontComponent;
@@ -42,7 +43,7 @@ describe('FrontComponent', () => {
       Given(() => {
         frontServiceSpy.getFeaturedLlamas
           .mustBeCalledWith({ newest: true })
-          .resolveWith([{ id: '1', name: 'shai', imageFileName: 'fakeImage' }]);
+          .resolveWith([createDefaultFakeLlama()]);
       });
 
       Then(() => {
@@ -69,7 +70,7 @@ describe('FrontComponent', () => {
 
     describe('GIVEN there are llamas THEN return true', () => {
       Given(() => {
-        componentUnderTest.llamas = [{ id: '1', name: 'Billy', imageFileName: 'fakeImage.jpg' }];
+        componentUnderTest.llamas = [createDefaultFakeLlama()];
       });
       Then(() => {
         expect(actualResult).toEqual(true);
@@ -94,4 +95,24 @@ describe('FrontComponent', () => {
       });
     });
   });
+
+  describe('METHOD: poke', () => {
+    let fakeLlama: Llama;
+
+    Given(() => {
+      fakeLlama = createDefaultFakeLlama();
+    });
+
+    When(() => {
+      componentUnderTest.poke(fakeLlama);
+    });
+
+    Then(() => {
+      expect(frontServiceSpy.pokeLlama).toHaveBeenCalledWith(fakeLlama);
+    });
+  });
 });
+
+function createDefaultFakeLlama(): Llama {
+  return { id: '1', name: 'fake llama', imageFileName: 'fake.jpg' };
+}

@@ -11,7 +11,8 @@
           <img class="img-thumbnail" src="assets/images/llamas/{{llama.imageFileName}}" alt="{{ llama.name }}" />
         </a>
       </div>
-      <span>{{ llama.name }}</span>
+      <p>{{ llama.name }}</p>
+      <a (click)="poke(llama)">Poke</a>
     </div>
   </ng-container>
 

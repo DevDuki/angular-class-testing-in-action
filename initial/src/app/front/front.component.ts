@@ -1,6 +1,6 @@
  import { Component, OnInit } from '@angular/core';
 import { FrontService } from './front.service';
-import { Llama } from './llama.model';
+import { Llama } from '../_types/llama.type';
 import { RouterAdapterService } from '../_services/router-adapter/router-adapter.service';
  import { appRoutesNames } from '../app.routes.names';
 
@@ -37,5 +37,10 @@ export class FrontComponent implements OnInit {
 
   goToLlamaPage(llamaId: string) {
     this.router.goToUrl(`/llama/${llamaId}`);
+  }
+
+  // TODO: handle errors?
+  poke(llama: Llama) {
+    this.frontService.pokeLlama(llama);
   }
 }
