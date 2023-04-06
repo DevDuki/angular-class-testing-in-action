@@ -5,5 +5,5 @@ import { appRoutesNames } from './app.routes.names';
 
 export const APP_ROUTES: Routes = [
   {path: '', component: FrontComponent},
-  {path: `${appRoutesNames.LLAAMA}/:id`, component: LlamaPageComponent},
+  {path: `${appRoutesNames.LLAAMA_PAGE}/:id`, component: LlamaPageComponent},
 ];

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { FrontService } from './front.service';
 import { Llama } from './llama.model';
 import { RouterAdapterService } from '../_services/router-adapter/router-adapter.service';
+ import { appRoutesNames } from '../app.routes.names';
 
 @Component({
   selector: 'ld-front',
@@ -9,7 +10,8 @@ import { RouterAdapterService } from '../_services/router-adapter/router-adapter
   styleUrls: ['./front.component.scss']
 })
 export class FrontComponent implements OnInit {
-  
+
+  llamaPageLink = `/${appRoutesNames.LLAAMA_PAGE}`
   llamas: Llama[];
   showErrorMessage: boolean;
 

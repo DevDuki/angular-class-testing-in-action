@@ -1,3 +1,3 @@
 export const appRoutesNames = {
-  LLAAMA: 'llama',
+  LLAAMA_PAGE: 'llama',
 }
