@@ -1,0 +1,170 @@
+
+{
+  "newestLlamas": [
+    {
+      "id": "1",
+      "name": "Richard",
+      "imageFileName": "1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Billy",
+      "imageFileName": "2.jpg"
+    },
+    {
+      "id": "3",
+      "name": "John",
+      "imageFileName": "3.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Blue velvet",
+      "imageFileName": "4.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Charming86",
+      "imageFileName": "5.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Natasha",
+      "imageFileName": "6.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Bali",
+      "imageFileName": "7.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Mystery",
+      "imageFileName": "8.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Armano",
+      "imageFileName": "9.jpg"
+    },
+    {
+      "id": "10",
+      "name": "Paul",
+      "imageFileName": "10.jpg"
+    }
+  ],
+  "llamas": [
+    {
+      "id": "1",
+      "name": "Richard",
+      "imageFileName": "1.jpg",
+      "featured": true
+    },
+    {
+      "id": "2",
+      "name": "Billy",
+      "imageFileName": "2.jpg",
+      "featured": true
+    },
+    {
+      "id": "3",
+      "name": "John",
+      "imageFileName": "3.jpg",
+      "featured": true
+    },
+    {
+      "id": "4",
+      "name": "Blue velvet",
+      "imageFileName": "4.jpg",
+      "featured": true
+    },
+    {
+      "id": "5",
+      "name": "Charming86",
+      "imageFileName": "5.jpg",
+      "featured": true
+    },
+    {
+      "id": "6",
+      "name": "Natasha",
+      "imageFileName": "6.jpg",
+      "featured": true
+    },
+    {
+      "id": "7",
+      "name": "Bali",
+      "imageFileName": "7.jpg",
+      "featured": true
+    },
+    {
+      "id": "8",
+      "name": "Mystery",
+      "imageFileName": "8.jpg",
+      "featured": true
+    },
+    {
+      "id": "9",
+      "name": "Armano",
+      "imageFileName": "9.jpg",
+      "featured": true
+    },
+    {
+      "id": "10",
+      "name": "Paul",
+      "imageFileName": "10.jpg",
+      "featured": true
+    },
+    {
+      "id": "11",
+      "name": "Barbara",
+      "imageFileName": "11.jpg"
+    },
+    {
+      "id": "12",
+      "name": "Mustafa",
+      "imageFileName": "12.jpg"
+    },
+    {
+      "id": "13",
+      "name": "Shlomo",
+      "imageFileName": "13.jpg"
+    },
+    {
+      "id": "14",
+      "name": "Alfalfa",
+      "imageFileName": "14.jpg"
+    },
+    {
+      "id": "15",
+      "name": "Unidirectional Happiness",
+      "imageFileName": "15.jpg"
+    },
+    {
+      "id": "16",
+      "name": "Wazary",
+      "imageFileName": "16.jpg"
+    },
+    {
+      "id": "17",
+      "name": "Mr Policeman",
+      "imageFileName": "17.jpg"
+    },
+    {
+      "id": "18",
+      "name": "Papa Bear",
+      "imageFileName": "18.jpg"
+    },
+    {
+      "id": "19",
+      "name": "Zazu",
+      "imageFileName": "19.jpg"
+    },
+    {
+      "id": "20",
+      "name": "George",
+      "imageFileName": "20.jpg"
+    }
+  ],
+  "users": [
+
+  ]
+}

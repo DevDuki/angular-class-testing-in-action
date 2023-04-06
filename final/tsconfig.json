@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@hirez_io"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

@@ -1,0 +1,33 @@
+<div class="row" *ngIf="featuredLlamas$ | async as featuredLlamas; else spinner">
+  <div *ngIf="!isListVisible(featuredLlamas)">
+    <h4>NO LLAMAS!</h4>
+  </div>
+
+  <ng-container *ngIf="isListVisible(featuredLlamas)">
+    <div class="llama-thumb col-6 col-md-3" *ngFor="let llama of featuredLlamas">
+      <div>
+      <a routerLink="{{llamaPageLink}}/{{ llama.id }}">
+          <img
+            class="img-thumbnail"
+            src="assets/images/llamas/{{ llama.imageFileName }}"
+            alt="{{ llama.name }}"
+          />
+        </a>
+      </div>
+      <p>{{ llama.name }}</p>
+
+      <div *ngIf="!llama.isPoked">
+        <a routerLink="." (click)="poke(llama)">Poke</a>
+      </div>
+
+      <div *ngIf="llama.isPoked">
+        Poked!
+      </div>
+
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #spinner>
+  <div class="spinner mt-5"></div>
+</ng-template>

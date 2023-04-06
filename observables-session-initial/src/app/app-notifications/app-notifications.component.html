@@ -1,0 +1,9 @@
+
+<div>
+  <ngb-toast *ngFor="let errorMessage of errorMessages"
+  [autohide]="false" class="bg-danger text-light" 
+  header="Error:" (hide)="removeError(errorMessage)">
+    {{errorMessage}}
+    
+  </ngb-toast>
+</div>

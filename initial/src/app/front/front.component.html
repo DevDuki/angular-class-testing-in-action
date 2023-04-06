@@ -1,0 +1,19 @@
+<div class="row">
+
+  <div *ngIf="!isListVisible()">
+    <h4>NO LLAMAS!</h4>
+  </div>
+
+  <ng-container *ngIf="isListVisible()">
+    <div class="llama-thumb col-6 col-md-3" *ngFor="let llama of llamas">
+
+      <div>
+        <img class="img-thumbnail" src="assets/images/llamas/{{llama.imageFileName}}"
+          alt="{{ llama.name }}" />
+      </div>
+      <span>{{ llama.name }}</span>
+      <div><button (click)="goToLlamaPage(llama.id)">Go To Page</button></div>
+    </div>
+  </ng-container>
+
+</div>

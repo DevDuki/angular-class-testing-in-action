@@ -1,0 +1,4 @@
+{
+  "watch": true,
+  "routes": "src/steps/server/routes.json"
+}
