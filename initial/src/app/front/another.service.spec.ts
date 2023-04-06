@@ -33,9 +33,9 @@ describe('AnotherService', () => {
 
     describe('GIVEN a successful request THEN return the llamas', () => {
       Given(() => {
-        fakeLlamas = [{ name: 'FAKE NAME', imageFileName: 'FAKE IMAGE' }];
+        fakeLlamas = [{ id: '1', name: 'FAKE NAME', imageFileName: 'FAKE IMAGE' }];
         httpSpy.get.and.nextOneTimeWith(fakeLlamas);
-        
+
       });
       Then(() => {
         expect(actualResult).toEqual(fakeLlamas);

@@ -6,16 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AnotherService } from './front/another.service';
 import { RouterModule } from '@angular/router';
 import { LlamaPageComponent } from './llama-page/llama-page.component';
+import { APP_ROUTES } from './app.routes';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      {path: '', component: FrontComponent},
-      {path: 'llama/:id', component: LlamaPageComponent},
-    ])
+    RouterModule.forRoot(APP_ROUTES)
   ],
   declarations: [
     AppComponent,

@@ -5,7 +5,7 @@ import { AnotherService } from './another.service';
 import { Spy, createSpyFromClass } from 'jasmine-auto-spies';
 
 describe('FrontService', () => {
-  
+
   let serviceUnderTest: FrontService;
   let anotherServiceSpy: Spy<AnotherService>;
   let fakeLlamas: Llama[];
@@ -29,7 +29,7 @@ describe('FrontService', () => {
   describe('METHOD: getFeaturedLlamas', () => {
 
     Given(() => {
-      fakeLlamas = [{ name: 'FAKE NAME', imageFileName: 'FAKE IMAGE' }];
+      fakeLlamas = [{ id: '1', name: 'FAKE NAME', imageFileName: 'FAKE IMAGE' }];
       anotherServiceSpy.getLlamasFromServer.and.nextOneTimeWith(fakeLlamas);
     });
 
@@ -40,8 +40,8 @@ describe('FrontService', () => {
     Then(() => {
       expect(actualResult).toEqual(fakeLlamas);
     });
-    
-    
+
+
   });
-  
+
 });

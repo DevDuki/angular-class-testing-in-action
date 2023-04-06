@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick, flushMicrotasks } from '@angular/core/testing';
+import { TestBed, fakeAsync } from '@angular/core/testing';
 import { FrontComponent } from './front.component';
 import { FrontService } from './front.service';
 
@@ -15,7 +15,10 @@ describe('FrontComponent', () => {
     TestBed.configureTestingModule({
       providers: [
         FrontComponent,
-        FrontService,
+        {
+          provide: FrontService,
+          useValue: createSpyFromClass(FrontService)
+        },
         {
           provide: RouterAdapterService,
           useValue: createSpyFromClass(RouterAdapterService)
@@ -39,7 +42,7 @@ describe('FrontComponent', () => {
       Given(() => {
         frontServiceSpy.getFeaturedLlamas
           .mustBeCalledWith({ newest: true })
-          .resolveWith([{ name: 'shai', imageFileName: 'fakeImage' }]);
+          .resolveWith([{ id: '1', name: 'shai', imageFileName: 'fakeImage' }]);
       });
 
       Then(() => {
@@ -47,7 +50,7 @@ describe('FrontComponent', () => {
       });
     });
 
-    describe(`GIVEN there is a problem fetching the llamas 
+    describe(`GIVEN there is a problem fetching the llamas
               THEN show an error`, () => {
       Given(() => {
         frontServiceSpy.getFeaturedLlamas.and.rejectWith();
@@ -66,7 +69,7 @@ describe('FrontComponent', () => {
 
     describe('GIVEN there are llamas THEN return true', () => {
       Given(() => {
-        componentUnderTest.llamas = [{ name: 'Billy', imageFileName: 'fakeImage.jpg' }];
+        componentUnderTest.llamas = [{ id: '1', name: 'Billy', imageFileName: 'fakeImage.jpg' }];
       });
       Then(() => {
         expect(actualResult).toEqual(true);
@@ -89,21 +92,6 @@ describe('FrontComponent', () => {
       Then(() => {
         expect(actualResult).toEqual(false);
       });
-    });
-  });
-
-  describe('METHOD: goToLlamaPage', () => {
-    let fakeLlamaId: string;
-    Given(() => {
-      fakeLlamaId = 'FAKE ID';
-    });
-
-    When(() => {
-      componentUnderTest.goToLlamaPage(fakeLlamaId);
-    });
-
-    Then(() => {
-      expect(routerSpy.goToUrl).toHaveBeenCalledWith(`/llama/${fakeLlamaId}`);
     });
   });
 });
