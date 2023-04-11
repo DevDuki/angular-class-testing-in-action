@@ -4,6 +4,6 @@ import { Routes } from '@angular/router';
 import { appRoutesNames } from './app.routes.names';
 
 export const APP_ROUTES: Routes = [
-  {path: '', component: FrontComponent},
-  {path: `${appRoutesNames.LLAAMA_PAGE}/:id`, component: LlamaPageComponent},
+  { path: '', component: FrontComponent },
+  { path: `${appRoutesNames.LLAAMA_PAGE}/:id`, component: LlamaPageComponent },
 ];

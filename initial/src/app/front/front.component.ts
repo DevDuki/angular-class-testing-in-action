@@ -1,7 +1,7 @@
  import { Component, OnInit } from '@angular/core';
 import { FrontService } from './front.service';
 import { Llama } from '../_types/llama.type';
-import { RouterAdapterService } from '../_services/router-adapter/router-adapter.service';
+import { RouterAdapterService } from '../_services/adapters/router-adapter/router-adapter.service';
  import { appRoutesNames } from '../app.routes.names';
 
 @Component({
@@ -25,7 +25,7 @@ export class FrontComponent implements OnInit {
       result => {
         this.llamas = result;
       },
-      error => {
+      () => {
         this.showErrorMessage = true;
       }
     );

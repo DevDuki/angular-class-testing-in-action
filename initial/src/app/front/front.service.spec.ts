@@ -3,11 +3,14 @@ import { TestBed, fakeAsync } from '@angular/core/testing';
 import { Llama } from '../_types/llama.type';
 import { LlamaRemoteService } from '../_services/llama-remote/llama-remote.service';
 import { Spy, createSpyFromClass } from 'jasmine-auto-spies';
+import { appRoutesNames } from '../app.routes.names';
+import { RouterAdapterService } from '../_services/adapters/router-adapter/router-adapter.service';
 
 describe('FrontService', () => {
 
   let serviceUnderTest: FrontService;
   let llamaRemoteServiceSpy: Spy<LlamaRemoteService>;
+  let routerAdapterServiceSpy: Spy<RouterAdapterService>;
   let fakeLlamas: Llama[];
   let actualResult: any;
 
@@ -15,12 +18,14 @@ describe('FrontService', () => {
     TestBed.configureTestingModule({
       providers: [
         FrontService,
-        {provide: LlamaRemoteService, useValue: createSpyFromClass(LlamaRemoteService)}
+        { provide: LlamaRemoteService, useValue: createSpyFromClass(LlamaRemoteService) },
+        { provide: RouterAdapterService, useValue: createSpyFromClass(RouterAdapterService) }
       ]
     });
 
-    serviceUnderTest = TestBed.get(FrontService);
-    llamaRemoteServiceSpy = TestBed.get(LlamaRemoteService);
+    serviceUnderTest = TestBed.inject(FrontService);
+    llamaRemoteServiceSpy = TestBed.inject(LlamaRemoteService) as Spy<LlamaRemoteService>;
+    routerAdapterServiceSpy = TestBed.inject(RouterAdapterService) as Spy<RouterAdapterService>;
 
     fakeLlamas = undefined;
     actualResult = undefined;
@@ -46,42 +51,55 @@ describe('FrontService', () => {
     let fakeUserLlamaId: string;
     let fakeLlama: Llama;
 
-    Given(() => {
-      fakeUserLlamaId = 'FAKE USER LLAMA ID';
-      serviceUnderTest.userLlama = {
-        ...fakeLlama,
-        id: fakeUserLlamaId
-      };
-    });
-
     When(() => {
       serviceUnderTest.pokeLlama(fakeLlama);
     });
 
-    describe('GIVEN llama with an undefined pokedBy list THEN add user llama to the list',() => {
+    describe('GIVEN user llama exists', () => {
+
       Given(() => {
-        fakeLlama = createDefaultLlama();
+        fakeUserLlamaId = 'FAKE USER LLAMA ID';
+        serviceUnderTest.userLlama = {
+          ...fakeLlama,
+          id: fakeUserLlamaId
+        };
       });
 
-      Then(() => {
-        const expectedChanges: Partial<Llama> = {
-          pokedByTheseLlamas: [fakeUserLlamaId]
-        };
-        expect(llamaRemoteServiceSpy.update).toHaveBeenCalledWith(fakeLlama.id, expectedChanges);
+      describe('GIVEN llama with an undefined pokedBy list THEN add user llama to the list',() => {
+        Given(() => {
+          fakeLlama = createDefaultLlama();
+        });
+
+        Then(() => {
+          const expectedChanges: Partial<Llama> = {
+            pokedByTheseLlamas: [fakeUserLlamaId]
+          };
+          expect(llamaRemoteServiceSpy.update).toHaveBeenCalledWith(fakeLlama.id, expectedChanges);
+        });
+      });
+
+      describe('GIVEN llama with a defined pokedBy list THEN add user llama to the list',() => {
+        Given(() => {
+          fakeLlama = createDefaultLlama();
+          fakeLlama.pokedByTheseLlamas = ['ANOTHER FAKE ID'];
+        });
+
+        Then(() => {
+          const expectedChanges: Partial<Llama> = {
+            pokedByTheseLlamas: ['ANOTHER FAKE ID', fakeUserLlamaId]
+          };
+          expect(llamaRemoteServiceSpy.update).toHaveBeenCalledWith(fakeLlama.id, expectedChanges);
+        });
       });
     });
 
-    describe('GIVEN llama with a defined pokedBy list THEN add user llama to the list',() => {
+    describe('GIVEN user llama does NOT exist THEN redirect to login', () => {
       Given(() => {
-        fakeLlama = createDefaultLlama();
-        fakeLlama.pokedByTheseLlamas = ['ANOTHER FAKE ID'];
+        serviceUnderTest.userLlama = null;
       });
 
       Then(() => {
-        const expectedChanges: Partial<Llama> = {
-          pokedByTheseLlamas: ['ANOTHER FAKE ID', fakeUserLlamaId]
-        };
-        expect(llamaRemoteServiceSpy.update).toHaveBeenCalledWith(fakeLlama.id, expectedChanges);
+        expect(routerAdapterServiceSpy.goToUrl).toHaveBeenCalledWith(`/${appRoutesNames.LOGIN}`);
       });
     });
   });
