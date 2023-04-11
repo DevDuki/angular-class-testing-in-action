@@ -8,7 +8,7 @@ export class HttpAdapterService {
   constructor() { }
 
   // TODO: TEST
-  patch(url: string, body: any) {
-
+  patch<T>(url: string, body: T): Promise<Required<T>> {
+    throw new Error('Not implemented');
   }
 }

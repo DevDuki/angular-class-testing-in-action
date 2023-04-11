@@ -50,28 +50,72 @@ describe('AnotherService', () => {
   });
 
   describe('METHOD: update', () => {
-    let fakeLlamaId: string;
-    let fakeLlamaChanges: Partial<Llama>;
+    let fakeLlamaIdArg: string;
+    let fakeLlamaChangesArg: Partial<Llama>;
+    let actualError: any;
+    let errorIsExpected: boolean;
 
     Given(() => {
-      /**
-       * Since we have mocked this method (update) in the front.service.spec.ts file, we are using the same value as we used there to
-       * sort of "simulate" and integrated test. This might look a bit cumbersome to do and seems a bit redundant, but it is a good way
-       * to make sure that both tests succeed with the exact same data. It is not a MUST-DO, but it surely has its benefits.
-       */
-      fakeLlamaId = 'FAKE ID';
-      fakeLlamaChanges = {
-        pokedByTheseLlamas: ['FAKE USER LLAMA ID']
-      };
+      errorIsExpected = false;
     });
 
-    When(() => {
-      serviceUnderTest.update(fakeLlamaId, fakeLlamaChanges);
+    When(async () => {
+      try {
+        actualResult = await  serviceUnderTest.update(fakeLlamaIdArg, fakeLlamaChangesArg);
+      } catch (error) {
+        if (!errorIsExpected) {
+          throw error;
+        }
+        actualError = error;
+      }
     });
 
-    Then(() => {
-      const expectedUrl = `${LLAMAS_REMOTE_PATH }/${fakeLlamaId}`
-      expect(httpAdapterServiceSpy.patch).toHaveBeenCalledWith(expectedUrl, fakeLlamaChanges);
+    describe('GIVEN update was successful THEN return the updated llama', () => {
+      let expectedReturnedLlama: Llama;
+
+      Given(() => {
+        /**
+         * Since we have mocked this method (update) in the front.service.spec.ts file, we are using the same value as we used there to
+         * sort of "simulate" and integrated test. This might look a bit cumbersome to do and seems a bit redundant, but it is a good way
+         * to make sure that both tests succeed with the exact same data. It is not a MUST-DO, but it surely has its benefits.
+         */
+        fakeLlamaIdArg = 'FAKE ID';
+        fakeLlamaChangesArg = {
+          pokedByTheseLlamas: ['FAKE USER LLAMA ID']
+        };
+
+        expectedReturnedLlama = createDefaultLlama();
+        expectedReturnedLlama.id = fakeLlamaIdArg;
+        expectedReturnedLlama.pokedByTheseLlamas = fakeLlamaChangesArg .pokedByTheseLlamas;
+
+        const expectedUrl = `${LLAMAS_REMOTE_PATH }/${fakeLlamaIdArg}`
+        httpAdapterServiceSpy.patch
+          .mustBeCalledWith(expectedUrl, fakeLlamaChangesArg)
+          .resolveWith(expectedReturnedLlama);
+      });
+
+      Then(() => {
+        expect(actualResult).toEqual(expectedReturnedLlama);
+      });
+    });
+
+    describe('GIVEN update failed THEN rethrow the error', () => {
+       Given(() => {
+         httpAdapterServiceSpy.patch.and.rejectWith( 'FAKE ERROR');
+         errorIsExpected = true;
+       });
+
+       Then(() => {
+         expect(actualError).toEqual('FAKE ERROR');
+       });
     });
   });
 });
+
+function createDefaultLlama(): Llama {
+  return {
+    id: '1',
+    name: 'FAKE NAME',
+    imageFileName: 'FAKE IMAGE'
+  };
+}

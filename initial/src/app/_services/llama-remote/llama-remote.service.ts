@@ -21,7 +21,6 @@ export class LlamaRemoteService {
     return this.http.get<Llama[]>('/api/newestLlamas');
   }
 
-  // TODO: TEST
   update(llamaId: string, changes: Partial<Llama>) {
     const url = `${LLAMAS_REMOTE_PATH}/${llamaId}`;
     return this.httpAdapterService.patch(url , changes);
