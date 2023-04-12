@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpAdapterService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  // TODO: TEST
-  patch<T>(url: string, body: T): Promise<Required<T>> {
-    throw new Error('Not implemented');
+  patch<T>(url: string, body: T): Promise<T> {
+    return this.http.patch<T>(url, body).toPromise();
   }
 }
