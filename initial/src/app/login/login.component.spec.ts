@@ -27,7 +27,7 @@ describe('LoginComponent', () => {
 
   describe('EVENT: email changed', () => {
     When(() => {
-      componentUnderTest.loginForm.get('email').setValue(fakeValue);
+      componentUnderTest.emailControl.setValue(fakeValue);
     });
 
     describe('GIVEN email is empty THEN email validation should fail', () => {
@@ -47,6 +47,32 @@ describe('LoginComponent', () => {
 
       Then(() => {
         expect(componentUnderTest.emailControl.valid).toBeFalse();
+      });
+    });
+  });
+
+  describe('EVENT: password changed', () => {
+    When(() => {
+      componentUnderTest.passwordControl.setValue(fakeValue);
+    });
+
+    describe('GIVEN password is empty THEN password validation should fail', () => {
+      Given(() => {
+        fakeValue = '';
+      });
+
+      Then(() => {
+        expect(componentUnderTest.passwordControl.valid).toBeFalse();
+      });
+    });
+
+    describe('GIVEN password is too short THEN password validation should fail', () => {
+      Given(() => {
+        fakeValue = '1234567';
+      });
+
+      Then(() => {
+        expect(componentUnderTest.passwordControl.valid).toBeFalse();
       });
     });
   });
