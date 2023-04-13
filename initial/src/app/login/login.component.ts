@@ -10,7 +10,7 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
 
@@ -26,5 +26,13 @@ export class LoginComponent implements OnInit {
       const credentials = this.loginForm.value;
       this.loginService.login(credentials);
     }
+  }
+
+  get emailControl() {
+    return this.loginForm.get('email');
+  }
+
+  get passwordControl() {
+    return this.loginForm.get('password');
   }
 }

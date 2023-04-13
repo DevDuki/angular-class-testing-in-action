@@ -10,6 +10,8 @@ describe('LoginComponent', () => {
 
   let loginServiceSpy: Spy<LoginService>;
 
+  let fakeValue: string;
+
   Given(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -23,6 +25,32 @@ describe('LoginComponent', () => {
     loginServiceSpy = TestBed.inject(LoginService) as Spy<LoginService>;
   });
 
+  describe('EVENT: email changed', () => {
+    When(() => {
+      componentUnderTest.loginForm.get('email').setValue(fakeValue);
+    });
+
+    describe('GIVEN email is empty THEN email validation should fail', () => {
+      Given(() => {
+        fakeValue = '';
+      });
+
+      Then(() => {
+        expect(componentUnderTest.emailControl.valid).toBeFalse();
+      });
+    });
+
+    describe('GIVEN email is not a valid address THEN email validation should fail', () => {
+      Given(() => {
+        fakeValue = 'NOT AN EMAIL';
+      });
+
+      Then(() => {
+        expect(componentUnderTest.emailControl.valid).toBeFalse();
+      });
+    });
+  });
+
   describe('METHOD: handleLogin', () => {
     let fakeCredentials: UserCredentials;
 
@@ -32,7 +60,7 @@ describe('LoginComponent', () => {
 
     describe('GIVEN form data is valid THEN pass credentials to the service', () => {
       Given(() => {
-        fakeCredentials = { email: 'FAKE EMAIL', password: 'FAKE PASSWORD' };
+        fakeCredentials = { email: 'FAKE@EMAIL.com', password: 'FAKE PASSWORD' };
 
         componentUnderTest.loginForm.setValue(fakeCredentials);
       });
