@@ -5,8 +5,8 @@
 
     <form [formGroup]="loginForm">
 
-      <input type="text" class="form-control mb-3" placeholder="Email">
-      <input type="password" class="form-control mb-3" placeholder="Password">
+      <input formControlName="email" type="text" class="form-control mb-3" placeholder="Email">
+      <input formControlName="password" type="password" class="form-control mb-3" placeholder="Password">
 
       <button (click)="handleLogin()" class="btn btn-primary">Login</button>
 
