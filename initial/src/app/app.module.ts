@@ -6,18 +6,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { LlamaPageComponent } from './llama-page/llama-page.component';
 import { APP_ROUTES } from './app.routes';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
     FrontComponent,
-    LlamaPageComponent
+    LlamaPageComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

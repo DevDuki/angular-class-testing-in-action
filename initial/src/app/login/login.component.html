@@ -1,0 +1,16 @@
+<div class="row mt-4 justify-content-center">
+  <div class="col-lg-4 mt-4 p-4 card">
+
+    <h3 class="mb-4">Login</h3>
+
+    <form [formGroup]="loginForm">
+
+      <input type="text" class="form-control mb-3" placeholder="Email">
+      <input type="password" class="form-control mb-3" placeholder="Password">
+
+      <button (click)="handleLogin()" class="btn btn-primary">Login</button>
+
+    </form>
+
+  </div>
+</div>
