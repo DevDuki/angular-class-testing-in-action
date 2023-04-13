@@ -8,6 +8,7 @@ import { LlamaPageComponent } from './llama-page/llama-page.component';
 import { APP_ROUTES } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     FrontComponent,
     LlamaPageComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

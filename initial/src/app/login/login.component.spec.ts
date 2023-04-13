@@ -4,6 +4,7 @@ import { LoginComponent } from './login.component';
 import { UserCredentials } from '../_types/user-credentials.type';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { LoginService } from './login.service';
+import { appRoutesNames } from '../app.routes.names';
 
 describe('LoginComponent', () => {
   let componentUnderTest: LoginComponent;
@@ -23,6 +24,12 @@ describe('LoginComponent', () => {
     componentUnderTest = TestBed.inject(LoginComponent);
 
     loginServiceSpy = TestBed.inject(LoginService) as Spy<LoginService>;
+  });
+
+  describe('INIT: ', () => {
+    Then(() => {
+      expect(componentUnderTest.registerLink).toEqual(`/${appRoutesNames.REGISTER}`);
+    });
   });
 
   describe('EVENT: email changed', () => {

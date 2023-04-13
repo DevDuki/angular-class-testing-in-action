@@ -1,0 +1,45 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-lg-4 p-4 mt-4 card">
+    <h3 class="mb-4">Registration</h3>
+
+    <form [formGroup]="registrationForm">
+
+      <div formGroupName="user">
+        <h6>User Details</h6>
+
+        <input formControlName="email" type="text" class="form-control" placeholder="Email">
+        <div *ngIf="emailControl.invalid && emailControl.touched" class="text-danger">
+          <small *ngIf="emailControl.getError('required')">Email is required</small>
+          <small *ngIf="emailControl.getError('email')">Email format is wrong</small>
+        </div>
+        <div class="mb-3"></div>
+
+        <input formControlName="password" type="password" class="form-control" placeholder="Password">
+        <div *ngIf="passwordControl.invalid && passwordControl.touched" class="text-danger">
+          <small *ngIf="passwordControl.getError('required')">Password is required</small>
+          <small *ngIf="passwordControl.getError('minlength')">Password should be at least 8 characters long</small>
+        </div>
+        <div class="mb-3"></div>
+      </div>
+
+      <div formGroupName="llama">
+        <h6>Llama Details</h6>
+
+        <input formControlName="name" type="text" class="form-control" placeholder="Llama Name">
+        <div *ngIf="nameControl.invalid && nameControl.touched" class="text-danger">
+          <small *ngIf="nameControl.getError('required')">Name is required</small>
+        </div>
+        <div class="mb-3"></div>
+
+        <input formControlName="imageFileName" type="text" class="form-control" placeholder="Image Filename">
+        <div *ngIf="imageFileNameControl.invalid && imageFileNameControl.touched" class="text-danger">
+          <small *ngIf="imageFileNameControl.getError('required')">Image filename is required</small>
+        </div>
+        <div class="mb-3"></div>
+      </div>
+
+      <button (click)="createAccount()" class="btn btn-primary">Create Account</button>
+
+    </form>
+  </div>
+</div>
