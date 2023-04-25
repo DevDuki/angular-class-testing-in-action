@@ -13,4 +13,9 @@ export class HttpAdapterService {
   patch<T>(url: string, body: T): Promise<T> {
     return this.http.patch<T>(url, body).toPromise();
   }
+
+  // TODO: TEST
+  post<T>(url: string, body: any): Promise<T> {
+    throw new Error('Method not implemented.')
+  }
 }
