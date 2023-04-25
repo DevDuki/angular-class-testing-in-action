@@ -25,4 +25,9 @@ export class LlamaRemoteService {
     const url = `${LLAMAS_REMOTE_PATH}/${llamaId}`;
     return this.httpAdapterService.patch(url , changes);
   }
+
+  // TODO: TEST
+  create(basicLlamaDetails: Partial<Llama>): Promise<Llama> {
+    throw new Error('Not implemented');
+  }
 }
