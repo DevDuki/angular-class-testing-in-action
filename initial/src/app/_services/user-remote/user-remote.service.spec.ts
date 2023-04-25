@@ -5,7 +5,7 @@ import { UserCredentials } from '../../_types/user-credentials.type';
 import { HttpAdapterService } from '../adapters/http-adapter/http-adapter.service';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 
-fdescribe('UserRemoteService', () => {
+describe('UserRemoteService', () => {
   let serviceUnderTest: UserRemoteService;
 
   let httpAdapterServiceSpy: Spy<HttpAdapterService>;
