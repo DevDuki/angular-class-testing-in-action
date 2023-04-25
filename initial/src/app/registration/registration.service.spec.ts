@@ -8,7 +8,7 @@ import { appRoutesNames } from '../app.routes.names';
 import { UserRemoteService } from '../_services/user-remote/user-remote.service';
 import { LlamaRemoteService } from '../_services/llama-remote/llama-remote.service';
 
-fdescribe('RegistrationService', () => {
+describe('RegistrationService', () => {
   let serviceUnderTest: RegistrationService;
 
   let routerAdapterServiceSpy: Spy<RouterAdapterService>;
