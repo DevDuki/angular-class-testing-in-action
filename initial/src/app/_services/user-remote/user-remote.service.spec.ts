@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserRemoteService } from './user-remote.service';
+import { USER_REMOTE_PATH, UserRemoteService } from './user-remote.service';
 import { UserCredentials } from '../../_types/user-credentials.type';
 import { HttpAdapterService } from '../adapters/http-adapter/http-adapter.service';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
@@ -45,7 +45,7 @@ fdescribe('UserRemoteService', () => {
           password: 'FAKE PASSWORD'
         };
 
-        const expectedUrl = '/api/users';
+        const expectedUrl = USER_REMOTE_PATH;
 
         httpAdapterServiceSpy.post
           .mustBeCalledWith(expectedUrl, fakeCredentials)

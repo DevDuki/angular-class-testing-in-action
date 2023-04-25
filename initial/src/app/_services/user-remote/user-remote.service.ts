@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { UserCredentials } from '../../_types/user-credentials.type';
 import { HttpAdapterService } from '../adapters/http-adapter/http-adapter.service';
 
+export const USER_REMOTE_PATH = '/api/users';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +16,7 @@ export class UserRemoteService {
   // TODO: TEST
   async create(credentials: UserCredentials): Promise<number> {
     const tokenHolder = await this.httpAdapterService
-      .post<{ accessToken: string }>('/api/users', credentials);
+      .post<{ accessToken: string }>(USER_REMOTE_PATH, credentials);
 
     return this.getUserIdFromToken(tokenHolder.accessToken);
   }
