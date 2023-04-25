@@ -4,8 +4,9 @@ import { USER_REMOTE_PATH, UserRemoteService } from './user-remote.service';
 import { UserCredentials } from '../../_types/user-credentials.type';
 import { HttpAdapterService } from '../adapters/http-adapter/http-adapter.service';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
+import * as jwtDecoder from './get-user-id-from-token';
 
-describe('UserRemoteService', () => {
+fdescribe('UserRemoteService', () => {
   let serviceUnderTest: UserRemoteService;
 
   let httpAdapterServiceSpy: Spy<HttpAdapterService>;
@@ -44,6 +45,10 @@ describe('UserRemoteService', () => {
           email: 'fake@email.com',
           password: 'FAKE PASSWORD'
         };
+
+        spyOn(jwtDecoder, 'getUserIdFromToken')
+          .withArgs(accessTokenWithUserIdOf2)
+          .and.returnValue(expectedUserId);
 
         const expectedUrl = USER_REMOTE_PATH;
 
